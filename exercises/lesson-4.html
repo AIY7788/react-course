@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson - 4</title>
+</head>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* .btn-4a,
+  .btn-4c {
+    background-color: rgb(25, 135, 84);
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+  }
+
+  .btn-4c {
+    background-color: rgb(220, 53, 69);
+  } */
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  p {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  input {
+    padding: 8px;
+    width: 220px;
+    margin-bottom: 8px;
+  }
+
+  button {
+    background-color: rgb(0, 123, 255);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 4px;
+    margin-top: 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.6);
+  }
+
+  .show-btn {
+    background-color: #e7e7e7;
+    color: #000;
+    margin-left: 8px;
+  }
+
+  hr {
+    margin-bottom: 10px;
+    color: #e7e7e7;
+    border: none;
+  }
+</style>
+
+<body>
+  <div class="js-container"></div>
+
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react.js"></script>
+  <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+  <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+
+  <script type="text/babel">
+    // function Switch({ isBottonOn, setIsButtonOn }) {
+
+    //   function handleClick() {
+    //     setIsButtonOn(!isBottonOn)
+    //   }
+
+    //   return (
+    //     <>
+    //       <button
+    //         className={isBottonOn ? "btn-4a" : 'btn-4c'}
+    //         onClick={handleClick}
+    //       >
+    //         {isBottonOn ? "ON" : "OFF"}
+    //       </button>
+    //     </>
+    //   )
+
+    // }
+
+    // function Clock() {
+    //   const [currentTime, setCurrentTime] = React.useState(dayjs().format('HH:mm:ss'));
+
+    //   React.useEffect(() => {
+    //     console.log("🟢 Clock mounted");
+
+    //     const timer = setInterval(() => {
+    //       setCurrentTime(dayjs().format('HH:mm:ss'));
+    //       console.log('run code')
+    //     }, 1000);
+
+    //     // if we don't have this line it will keep running in the background even after the component is unmounted (removed from the screen).
+    //     return () => {
+    //       clearInterval(timer);
+    //       console.log("🔴 Clock unmounted & timer cleared");
+    //     };
+    //   }, [])
+
+    //   return <p>{currentTime}</p>;
+    // }
+
+    // function LoginForm() {
+    //   const [isShow, setIsShow] = React.useState(false);
+
+    //   const [showClock, setShowClock] = React.useState(true);
+
+    //   function handleClickShow() {
+    //     setIsShow(!isShow);
+    //   }
+
+    //   return (
+    //     <>
+    //       <div>
+    //         <button onClick={() => setShowClock(!showClock)}>
+    //           {showClock ? "Hide Clock" : "Show Clock"}
+    //         </button>
+    //         <hr />
+    //         {showClock && <Clock />}
+
+    //         <input
+    //           type="email" placeholder="Email"
+    //         />
+    //         <br />
+    //         <input
+    //           type={isShow ? "text" : "password"} placeholder="Password"
+    //         />
+    //         <button
+    //           onClick={handleClickShow}
+    //           className="show-btn"
+    //         >{isShow ? "Hide" : "Show"}</button>
+    //       </div>
+    //       <button>Login</button>
+    //       <button>Sign up</button>
+
+    //     </>
+    //   )
+    // }
+
+    function Counter({ count, onClick, buttonRef }) {
+
+      return (
+        <button
+          onClick={onClick}
+          ref={buttonRef}
+        >Clicked {count} {count === 1 ? 'time' : 'times'}</button>
+      )
+    }
+
+    function App() {
+      // let [isBottonOn, setIsButtonOn] = React.useState(false)
+
+      // return (
+      //   <>
+      //     <Switch
+      //       isBottonOn={isBottonOn}
+      //       setIsButtonOn={setIsButtonOn}
+      //     />
+      //   </>
+      // )
+
+      // return (
+      //   <>
+      //     <p>Hello, welcome to my website</p>
+
+      //     <LoginForm />
+      //   </>
+      // )
+
+      const [count, setCount] = React.useState(0)
+
+      function onClick() {
+        setCount(count + 1)
+      }
+
+      function resetCount() {
+        setCount(0)
+      }
+
+      const buttonRef = React.useRef(null)
+      const timerRef = React.useRef(null)
+
+      function autoClick() {
+        // console.log(timerRef.current)
+        if (timerRef.current) return
+
+        timerRef.current = setInterval(() => {
+          const buttonElem = buttonRef.current;
+          if (buttonElem) {
+            buttonElem.click();
+          }
+        }, 1000);
+        console.log(timerRef.current)
+      }
+
+      function stopAuto() {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+
+      return (
+        <>
+          <Counter onClick={onClick} count={count} buttonRef={buttonRef} />
+
+          <button onClick={resetCount}>Reset</button>
+
+          <button
+            onClick={autoClick}
+          >Auto Click</button>
+
+          <button
+            onClick={stopAuto}
+          >Stop Auto</button>
+
+
+        </>
+      )
+    }
+
+    const container = document.querySelector('.js-container');
+    const root = ReactDOM.createRoot(container);
+
+    root.render(<App />)
+  </Script>
+</body>
+
+</html>

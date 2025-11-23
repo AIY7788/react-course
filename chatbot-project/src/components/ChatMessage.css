@@ -1,0 +1,43 @@
+.container-message {
+  display: flex;
+  align-items: start;
+}
+
+.user-message,
+.robot-message {
+  /* margin: 0; */
+  padding: 0.8rem 1.2rem;
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+  max-width: 300px;
+}
+
+.user-message {
+  margin-right: 12px;
+  margin-left: auto;
+}
+
+.robot-message {
+  margin-right: auto;
+  margin-left: 12px;
+}
+
+.robot-message img {
+  height: 40px;
+  margin: -15px;
+}
+
+.user-message span,
+.robot-message span {
+  color: rgb(155, 155, 155);
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+.message-profile {
+  height: 45px;
+  border-radius: 45px;
+  object-fit: cover;
+  margin-top: 1rem;
+}

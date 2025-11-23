@@ -1,0 +1,28 @@
+.chat-textbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+
+/* input::placeholder {
+  font-size: 1rem;
+} */
+
+.send-btn {
+  background-color: rgb(25, 135, 84);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.clear-btn {
+  background-color: rgb(238, 238, 238);
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+}
