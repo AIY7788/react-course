@@ -1,5 +1,6 @@
 import "./OrdersPage.css";
-import { Header } from "../components/Header.jsx";
+import Header from "../components/Header";
+import { NavLink } from "react-router";
 
 export function OrdersPage() {
   return (
@@ -55,11 +56,11 @@ export function OrdersPage() {
               </div>
 
               <div className="product-actions">
-                <a href="/tracking">
+                <NavLink to="/tracking">
                   <button className="track-package-button button-secondary">
                     Track package
                   </button>
-                </a>
+                </NavLink>
               </div>
 
               <div className="product-image-container">
@@ -84,11 +85,11 @@ export function OrdersPage() {
               </div>
 
               <div className="product-actions">
-                <a href="/tracking">
+                <NavLink to="/tracking">
                   <button className="track-package-button button-secondary">
                     Track package
                   </button>
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -133,11 +134,11 @@ export function OrdersPage() {
               </div>
 
               <div className="product-actions">
-                <a href="/tracking">
+                <NavLink to="/tracking">
                   <button className="track-package-button button-secondary">
                     Track package
                   </button>
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>

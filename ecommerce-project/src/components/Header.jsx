@@ -1,7 +1,7 @@
 import "./Header.css";
 import { NavLink } from "react-router";
 
-export function Header() {
+function Header() {
   return (
     <div className="header">
       <div className="left-section">
@@ -33,3 +33,5 @@ export function Header() {
     </div>
   );
 }
+
+export default Header;
