@@ -3,7 +3,13 @@ import { NavLink } from "react-router";
 import logoWite from "../assets/images/logo-white.png";
 import mobileLogoWhite from "../assets/images/mobile-logo-white.png";
 
-function Header() {
+function Header({ cart }) {
+  let cartQuantity = 0;
+
+  cart.forEach((item) => {
+    cartQuantity += item.quantity;
+  });
+
   return (
     <div className="header">
       <div className="left-section">
@@ -28,7 +34,7 @@ function Header() {
 
         <NavLink className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="images/icons/cart-icon.png" />
-          <div className="cart-quantity">3</div>
+          <div className="cart-quantity">{cartQuantity}</div>
           <div className="cart-text">Cart</div>
         </NavLink>
       </div>
