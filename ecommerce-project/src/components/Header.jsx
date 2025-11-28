@@ -3,10 +3,10 @@ import { NavLink } from "react-router";
 import logoWite from "../assets/images/logo-white.png";
 import mobileLogoWhite from "../assets/images/mobile-logo-white.png";
 
-function Header({ cart }) {
+function Header({ cartItems }) {
   let cartQuantity = 0;
 
-  cart.forEach((item) => {
+  cartItems.forEach((item) => {
     cartQuantity += item.quantity;
   });
 
