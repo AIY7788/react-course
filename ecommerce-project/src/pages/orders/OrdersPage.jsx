@@ -10,9 +10,11 @@ export function OrdersPage({ cartItems }) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    exios.get("api/orders?expand=products").then((response) => {
+    const fetchOrders = async () => {
+      const response = await exios.get("api/orders?expand=products");
       setOrders(response.data);
-    });
+    };
+    fetchOrders();
   }, []);
 
   return (
