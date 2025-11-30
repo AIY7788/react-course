@@ -1,5 +1,5 @@
 import "./Header.css";
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 import logoWite from "../assets/images/logo-white.png";
 import mobileLogoWhite from "../assets/images/mobile-logo-white.png";
 
@@ -13,10 +13,10 @@ function Header({ cartItems }) {
   return (
     <div className="header">
       <div className="left-section">
-        <NavLink to="/" className="header-link">
+        <Link to="/" className="header-link">
           <img className="logo" src={logoWite} />
           <img className="mobile-logo" src={mobileLogoWhite} />
-        </NavLink>
+        </Link>
       </div>
 
       <div className="middle-section">
@@ -32,11 +32,11 @@ function Header({ cartItems }) {
           <span className="orders-text">Orders</span>
         </NavLink>
 
-        <NavLink className="cart-link header-link" to="/checkout">
+        <Link className="cart-link header-link" to="/checkout">
           <img className="cart-icon" src="images/icons/cart-icon.png" />
           <div className="cart-quantity">{cartQuantity}</div>
           <div className="cart-text">Cart</div>
-        </NavLink>
+        </Link>
       </div>
     </div>
   );
