@@ -2,13 +2,13 @@ import Header from "../components/Header";
 import "./TrackingPage.css";
 import { NavLink } from "react-router";
 
-function TrackingPage() {
+export function TrackingPage({ cartItems }) {
   return (
     <>
       <title>Tracking</title>
       <link rel="icon" type="image/svg+xml" href="tracking-favicon.png" />
 
-      <Header />
+      <Header cartItems={cartItems} />
 
       <div class="tracking-page">
         <div class="order-tracking">
@@ -43,5 +43,3 @@ function TrackingPage() {
     </>
   );
 }
-
-export default TrackingPage;
