@@ -3,7 +3,13 @@ import { Link } from "react-router";
 import logo from "../../assets/images/logo.png";
 import mobileLogo from "../../assets/images/mobile-logo.png";
 
-function CheckoutPageHeader() {
+function CheckoutPageHeader({ cartItems }) {
+  let cartQuantity = 0;
+
+  cartItems.forEach((item) => {
+    cartQuantity += item.quantity;
+  });
+
   return (
     <div className="checkout-header">
       <div className="header-content">
@@ -17,7 +23,9 @@ function CheckoutPageHeader() {
         <div className="checkout-header-middle-section">
           Checkout (
           <Link className="return-to-home-link" to="/">
-            3 items
+            {cartQuantity > 1
+              ? `${cartQuantity} items`
+              : `${cartQuantity} item`}
           </Link>
           )
         </div>
