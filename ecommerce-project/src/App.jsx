@@ -11,25 +11,29 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 function App() {
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      const response = await axios.get("api/cart-items?expand=product");
-      setCartItems(response.data);
-    };
+  const loadCart = async () => {
+    const response = await axios.get("api/cart-items?expand=product");
+    setCartItems(response.data);
+  };
 
-    fetchCartItems();
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadCart();
   }, []);
 
   return (
     <Routes>
-      <Route index element={<HomePage cartItems={cartItems} />} />
+      <Route
+        index
+        element={<HomePage cartItems={cartItems} loadCart={loadCart} />}
+      />
       <Route path="checkout" element={<CheckoutPage cartItems={cartItems} />} />
       <Route path="orders" element={<OrdersPage cartItems={cartItems} />} />
       <Route
         path="tracking/:orderId/:productId"
         element={<TrackingPage cartItems={cartItems} />}
       />
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage cartItems={cartItems} />} />
     </Routes>
   );
 }
