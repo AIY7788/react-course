@@ -31,9 +31,9 @@ export function TrackingPage({ cartItems }) {
     100
   );
 
-  console.log("Total Delivery Time (ms):", totalDeliveryTimeMs);
-  console.log("Elapsed Time (ms):", elapsedTimeMs);
-  console.log("Progress Percentage:", progressPercentage);
+  const isPreparing = progressPercentage < 33;
+  const isShipped = progressPercentage >= 33 && progressPercentage < 100;
+  const isDelivered = progressPercentage >= 100;
 
   return (
     <>
@@ -49,7 +49,7 @@ export function TrackingPage({ cartItems }) {
           </Link>
 
           <div className="delivery-date">
-            Arriving on{" "}
+            {progressPercentage >= 100 ? "Delivered on" : "Arriving on"}{" "}
             {dayjs(orderProduct.estimatedDeliveryTimeMs).format("dddd, MMMM D")}
           </div>
 
@@ -60,9 +60,19 @@ export function TrackingPage({ cartItems }) {
           <img className="product-image" src={orderProduct.product.image} />
 
           <div className="progress-labels-container">
-            <div className="progress-label">Preparing</div>
-            <div className="progress-label current-status">Shipped</div>
-            <div className="progress-label">Delivered</div>
+            <div
+              className={`progress-label ${isPreparing && "current-status"}`}
+            >
+              Preparing
+            </div>
+            <div className={`progress-label ${isShipped && "current-status"}`}>
+              Shipped
+            </div>
+            <div
+              className={`progress-label ${isDelivered && "current-status"}`}
+            >
+              Delivered
+            </div>
           </div>
 
           <div className="progress-bar-container">
