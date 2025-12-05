@@ -1,9 +1,11 @@
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
+  const [addedMessage, setAddedMessage] = useState(false);
+  const timeoutRef = useRef(null);
 
   const handleAddToCart = async () => {
     await axios.post("/api/cart-items", {
@@ -12,6 +14,16 @@ export function Product({ product, loadCart }) {
     });
 
     await loadCart();
+
+    setAddedMessage(true);
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setAddedMessage(false);
+    }, 2000);
   };
 
   const handleSelectedQuantity = (e) => {
@@ -56,7 +68,7 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
+      <div className="added-to-cart" style={{ opacity: addedMessage ? 1 : 0 }}>
         <img src="images/icons/checkmark.png" />
         Added
       </div>
