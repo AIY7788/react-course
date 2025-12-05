@@ -17,12 +17,15 @@ export function CheckoutPage({ cartItems, loadCart }) {
       setDeliveryOptions(response.data);
     };
 
+    fetchDeliveryOptions();
+  }, []);
+
+  useEffect(() => {
     const fetchPaymentSummary = async () => {
       const response = await exios.get("api/payment-summary");
       setPaymentSummary(response.data);
     };
 
-    fetchDeliveryOptions();
     fetchPaymentSummary();
   }, [cartItems]);
 
